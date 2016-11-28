@@ -1,0 +1,30 @@
+{
+  "name": "simple-note",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "dora --plugins webpack",
+    "build": "atool-build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "entry": {
+    "index": "./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeuisKen/simple-note.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LeuisKen/simple-note/issues"
+  },
+  "homepage": "https://github.com/LeuisKen/simple-note#readme",
+  "devDependencies": {
+    "atool-build": "^0.10.0-alpha.0",
+    "dora": "^0.4.3",
+    "dora-plugin-webpack": "^0.8.1"
+  }
+}
