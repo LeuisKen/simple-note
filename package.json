@@ -23,8 +23,11 @@
   },
   "homepage": "https://github.com/LeuisKen/simple-note#readme",
   "devDependencies": {
-    "atool-build": "^0.10.0-alpha.0",
+    "atool-build": "^0.9.3",
     "dora": "^0.4.3",
     "dora-plugin-webpack": "^0.8.1"
+  },
+  "dependencies": {
+    "zepto": "^1.2.0"
   }
 }
