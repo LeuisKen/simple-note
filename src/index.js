@@ -1,4 +1,4 @@
-import './asserts/index.css'
+import './asserts/index.less'
 import Model from './model'
 
 const $ = document.querySelector.bind(document)
@@ -8,11 +8,13 @@ const View = {
     let frag = document.createDocumentFragment(),
         list = $('.account-list')
     Object.keys(data).forEach(el => {
-      let item = document.createElement('li')
+      let item = document.createElement('li'),
+          date = new Date(+el)
+      item.className = 'account-list-item'
       item.innerHTML = `
         <span>${data[el].type}</span>
-        <span class="timestamp">${el}</span>
-        ${data[el].amount}
+        <span class="timestamp">${date.getFullYear() % 100}/${date.getMonth() + 1}/${date.getDate()}</span>
+        <span class="amount ${data[el].amount.toString()[0] !== '-' ? 'income' : 'cost'}">${data[el].amount}</span>
         <button>删除</button>
       `
       frag.appendChild(item)
@@ -51,6 +53,10 @@ list.addEventListener('click', function({ target }) {
     let timestamp = target.parentNode.querySelector('.timestamp').textContent
     Model.delete(timestamp)
   }
+})
+
+list.addEventListener('touchstart', function({ target }) {
+  console.log(target)
 })
 
 View.render(Model.get())

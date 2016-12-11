@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.header {
+  height: 50px;
+  background: #8ed498;
+  h1 {
+    font-size: 26px;
+    text-align: center;
+    line-height: 50px;
+    color: #fff;
+  }
+}
+.account-list-item {
+  position: relative;
+  border-bottom: 1px dashed #a6baa9;
+  height: 60px;
+  line-height: 60px;
+  color: #636363;
+  &:nth-child(2n+1) {
+    background: #fbfbfb;
+  }
+  .timestamp {
+    position: absolute;
+    top: -15px;
+    right: 10px;
+    font-size: 14px;
+    color: #afafaf;
+  }
+  .amount {
+    &.income {
+      color: #7fd2a9;
+    }
+    &.cost {
+      color: #db6c63;
+    }
+  }
+}
