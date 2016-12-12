@@ -30,7 +30,8 @@ Model.onchange = function(data) {
 
 let takeNoteBth = $('#take-note'),
     amount = $('#amount'),
-    list = $('.account-list')
+    list = $('.account-list'),
+    addBtn = $('.add-account')
 
 takeNoteBth.addEventListener('click', function(e) {
   let type = $('#type').value
@@ -56,7 +57,18 @@ list.addEventListener('click', function({ target }) {
 })
 
 list.addEventListener('touchstart', function({ target }) {
-  console.log(target)
+  let element = target
+  while (element.nodeName !== 'LI' || element.className !== 'account-list-item') {
+    if (element === this) {
+      return
+    }
+    element = element.parentNode
+  }
+  console.log(element)
+})
+
+addBtn.addEventListener('touchstart', function({ target }) {
+  console.log(1)
 })
 
 View.render(Model.get())
