@@ -1,76 +1,88 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="/index.css">
-    <title></title>
-    <script src="https://use.fontawesome.com/d88493d92c.js"></script>
-  </head>
-  <body>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <title>记账本</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" href="/index.css">
+    </head>
+    <body>
     <div class="header">
-      <i class="fa fa-2x fa-bars nav" aria-hidden="true"></i><i class="fa fa-2x fa-pencil add-account" aria-hidden="true"></i><h1>记账本</h1>
+        <i class="fa fa-2x fa-bars nav" aria-hidden="true"></i><i class="fa fa-2x fa-pencil add-account" aria-hidden="true"></i><h1>记账本</h1>
     </div>
     <select id="type" class="">
-      <option value="收入">收入</option>
-      <option value="衣服">衣服</option>
-      <option value="饮食">饮食</option>
-      <option value="住宿">住宿</option>
-      <option value="交通">交通</option>
-      <option value="购物">购物</option>
-      <option value="其他">其他</option>
+        <option value="收入">收入</option>
+        <option value="衣服">衣服</option>
+        <option value="饮食">饮食</option>
+        <option value="住宿">住宿</option>
+        <option value="交通">交通</option>
+        <option value="购物">购物</option>
+        <option value="其他">其他</option>
     </select>
     <input id="amount" type="number" name="" value="">
     <input id="take-note" type="button" name="" value="记一笔">
     <ul class="account-list">
     </ul>
     <div class="modal add-menu">
-      <div class="add-menu-header">
-        <i class="fa fa-2x fa-times close" aria-hidden="true"></i>
-        <div class="submit">发布</div>
-        <h2>记一笔</h2>
-      </div>
-      <div class="select-list">
-        <div class="type-container">
-          <div class="select-type">
-            <div class="icon income">
-              <i class="fa fa-usd" aria-hidden="true"></i>
-            </div>
-            收入
-          </div>
+        <div class="add-menu-header">
+            <i class="fa fa-2x fa-times close" aria-hidden="true"></i>
+            <div class="submit">发布</div>
+            <h2>记一笔</h2>
         </div>
-        <div class="type-container">
-          <div class="select-type">
-            <div class="icon clothing">
-              <i class="fa fa-usd" aria-hidden="true"></i>
+        <div class="select-list">
+            <div class="type-container">
+                <div class="select-type">
+                    <div class="icon income">
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                    </div>
+                    收入
+                </div>
             </div>
-            衣服
-          </div>
-          <div class="select-type">
-            <div class="icon diet">
-              <i class="fa fa-usd" aria-hidden="true"></i>
+            <div class="type-container">
+                <div class="select-type">
+                    <div class="icon clothing">
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                    </div>
+                    衣服
+                </div>
+                <div class="select-type">
+                    <div class="icon diet">
+                        <i class="fa fa-usd" aria-hidden="true"></i>
+                    </div>
+                    饮食
+                </div>
+                <div class="select-type">
+                    <div class="icon hotel">
+                        <i class="fa fa-home" aria-hidden="true"></i>
+                    </div>
+                    住宿
+                </div>
+                <div class="select-type">
+                    <div class="icon transportation">
+                        <i class="fa fa-plane" aria-hidden="true"></i>
+                    </div>
+                    交通
+                </div>
             </div>
-            饮食
-          </div>
-          <div class="select-type">
-            <div class="icon hotel">
-              <i class="fa fa-home" aria-hidden="true"></i>
+            <div class="type-container">
+                <div class="select-type">
+                    <div class="icon shop">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    </div>
+                    购物
+                </div>
+                <div class="select-type">
+                    <div class="icon other">
+                        <i class="fa fa-plane" aria-hidden="true"></i>
+                    </div>
+                    其他
+                </div>
             </div>
-            住宿
-          </div>
-          <div class="select-type">
-            <div class="icon transportation">
-              <i class="fa fa-plane" aria-hidden="true"></i>
-            </div>
-            交通
-          </div>
         </div>
-        <div class="type-container">
-
-        </div>
-      </div>
     </div>
-  </body>
-  <script type="text/javascript" src="/common.js"></script>
-  <script type="text/javascript" src="/index.js"></script>
+    <script src="https://use.fontawesome.com/d88493d92c.js"></script>
+    <script src="/common.js"></script>
+    <script src="/index.js"></script>
+    </body>
 </html>

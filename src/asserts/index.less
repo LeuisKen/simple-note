@@ -1,121 +1,128 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
 .header {
-  height: 50px;
-  background: #8ed498;
-  h1 {
-    font-size: 26px;
-    text-align: center;
-    line-height: 50px;
-    color: #fff;
-  }
-  .nav, .add-account {
     height: 50px;
-    line-height: 50px;
-    color: #fff;
-  }
-  .nav {
-    float: left;
-    margin-left: 10px;
-  }
-  .add-account {
-    float: right;
-    margin-right: 10px;
-  }
+    background: #8ed498;
+    h1 {
+        font-size: 26px;
+        text-align: center;
+        line-height: 50px;
+        color: #fff;
+    }
+    .nav,
+    .add-account {
+        height: 50px;
+        line-height: 50px;
+        color: #fff;
+    }
+    .nav {
+        float: left;
+        margin-left: 10px;
+    }
+    .add-account {
+        float: right;
+        margin-right: 10px;
+    }
 }
 .account-list-item {
-  position: relative;
-  border-bottom: 1px dashed #a6baa9;
-  height: 60px;
-  line-height: 60px;
-  color: #636363;
-  &:nth-child(2n+1) {
-    background: #fbfbfb;
-  }
-  .timestamp {
-    position: absolute;
-    top: -15px;
-    right: 10px;
-    font-size: 14px;
-    color: #afafaf;
-  }
-  .amount {
-    &.income {
-      color: #7fd2a9;
+    position: relative;
+    border-bottom: 1px dashed #a6baa9;
+    height: 60px;
+    line-height: 60px;
+    color: #636363;
+    &:nth-child(2n+1) {
+        background: #fbfbfb;
     }
-    &.cost {
-      color: #db6c63;
+    .timestamp {
+        position: absolute;
+        top: -15px;
+        right: 10px;
+        font-size: 14px;
+        color: #afafaf;
     }
-  }
+    .amount {
+        &.income {
+            color: #7fd2a9;
+        }
+        &.cost {
+            color: #db6c63;
+        }
+    }
 }
 .modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
 .add-menu {
-  background: #fff;
-  .add-menu-header {
-    height: 50px;
-    background: #f8f8f8;
-    h2 {
-      line-height: 50px;
-      text-align: center;
-      color: #8b8b8b;
-    }
-    .close {
-      float: left;
-      margin-left: 10px;
-      color: #8b8b8b;
-      line-height: 50px;
-    }
-    .submit {
-      float: right;
-      margin: 10px 10px 10px 0;
-      padding: 5px 10px;
-      background: #8ed498;
-      color: #fff;
-      border-radius: 5px;
-    }
-  }
-  .select-list {
-    .type-container {
-      height: 80px;
-      border-bottom: 1px solid #d8d8d8;
-      .select-type {
-        width: 40px;
-        text-align: center;
-        padding: 15px 15px 3px;
-        color: #9a9a9a;
-        float: left;
-        .icon {
-          width: 40px;
-          height: 40px;
-          line-height: 40px;
-          font-size: 22px;
-          border-radius: 50%;
-          color: #fff;
-          &.income {
-            background: #93dcb8;
-          }
-          &.clothing {
-            background: #f39f61;
-          }
-          &.diet {
-            background: #fe8988
-          }
-          &.hotel {
-            background: #c6b29c;
-          }
-          &.transportation {
-            background: #6fb2de;
-          }
+    background: #fff;
+    .add-menu-header {
+        height: 50px;
+        background: #f8f8f8;
+        h2 {
+            line-height: 50px;
+            text-align: center;
+            color: #8b8b8b;
         }
-      }
+        .close {
+            float: left;
+            margin-left: 10px;
+            color: #8b8b8b;
+            line-height: 50px;
+        }
+        .submit {
+            float: right;
+            margin: 10px 10px 10px 0;
+            padding: 5px 10px;
+            background: #8ed498;
+            color: #fff;
+            border-radius: 5px;
+        }
     }
-  }
+    .select-list {
+        .type-container {
+            height: 80px;
+            border-bottom: 1px solid #d8d8d8;
+            .select-type {
+                width: 40px;
+                text-align: center;
+                padding: 15px 15px 3px;
+                color: #9a9a9a;
+                float: left;
+                .icon {
+                    width: 40px;
+                    height: 40px;
+                    line-height: 40px;
+                    font-size: 22px;
+                    border-radius: 50%;
+                    color: #fff;
+                    &.income {
+                        background: #93dcb8;
+                    }
+                    &.clothing {
+                        background: #f39f61;
+                    }
+                    &.diet {
+                        background: #fe8988
+                    }
+                    &.hotel {
+                        background: #c6b29c;
+                    }
+                    &.transportation {
+                        background: #6fb2de;
+                    }
+                    &.shop {
+                        background: #da5a4c;
+                    }
+                    &.other {
+                        background: #fdc403;
+                    }
+                }
+            }
+        }
+    }
 }
