@@ -1,4 +1,5 @@
-import './asserts/index.less'
+import './asserts/styles/iconfont.css'
+import './asserts/styles/index.less'
 import Model from './model'
 
 const $ = document.querySelector.bind(document)
@@ -31,7 +32,9 @@ Model.onchange = function(data) {
 let takeNoteBth = $('#take-note'),
     amount = $('#amount'),
     list = $('.account-list'),
-    addBtn = $('.add-account')
+    addBtn = $('.add-account'),
+    modal = $('.modal'),
+    modalClose = $('.modal .close')
 
 takeNoteBth.addEventListener('click', function(e) {
   let type = $('#type').value
@@ -67,8 +70,31 @@ list.addEventListener('touchstart', function({ target }) {
   console.log(element)
 })
 
-addBtn.addEventListener('touchstart', function({ target }) {
-  console.log(1)
+addBtn.addEventListener('click', function({ target }) {
+  window.location.hash = 'add'
+})
+
+window.addEventListener('hashchange', function() {
+    if (window.location.hash === '#add') {
+        modal.style.visibility = 'visible'
+        modal.style.opacity = 1
+    } else {
+        modal.style.opacity = 0
+    }
+})
+
+modal.addEventListener('transitionend', function({ propertyName }) {
+    if (propertyName === 'opacity' && this.style.opacity === '0') {
+        this.style.visibility = 'hidden'
+    }
+})
+
+modalClose.addEventListener('click', function() {
+    window.location.hash = ''
+})
+
+window.addEventListener('load', function() {
+    window.dispatchEvent(new Event('hashchange'))
 })
 
 View.render(Model.get())

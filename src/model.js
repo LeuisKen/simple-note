@@ -2,7 +2,7 @@ let data = JSON.parse(window.localStorage.getItem('note'))
 
 if (data === null) {
   data = {}
-  window.localStorage.setItem('note', data)
+  window.localStorage.setItem('note', JSON.stringify(data))
 }
 
 export default {
