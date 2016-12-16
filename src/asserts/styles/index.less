@@ -2,6 +2,16 @@
     margin: 0;
     padding: 0;
 }
+
+// clearfix
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden
+}
+
 .header {
     height: 50px;
     background: #8ed498;
@@ -27,17 +37,18 @@
     }
 }
 .account-list-item {
+    list-style: none;
     position: relative;
     border-bottom: 1px dashed #a6baa9;
-    height: 60px;
-    line-height: 60px;
     color: #636363;
+    padding: 10px;
+    line-height: 40px;
     &:nth-child(2n+1) {
         background: #fbfbfb;
     }
     .timestamp {
         position: absolute;
-        top: -15px;
+        top: -5px;
         right: 10px;
         font-size: 14px;
         color: #afafaf;
@@ -49,6 +60,16 @@
         &.cost {
             color: #db6c63;
         }
+    }
+    .icon {
+        width: 40px;
+        height: 40px;
+        font-size: 22px;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;
+        float: left;
+        margin-right: 10px;
     }
 }
 .modal {
@@ -102,29 +123,64 @@
                     font-size: 22px;
                     border-radius: 50%;
                     color: #fff;
-                    &.income {
-                        background: #93dcb8;
-                    }
-                    &.clothing {
-                        background: #f39f61;
-                    }
-                    &.diet {
-                        background: #fe8988
-                    }
-                    &.hotel {
-                        background: #c6b29c;
-                    }
-                    &.transportation {
-                        background: #6fb2de;
-                    }
-                    &.shop {
-                        background: #da5a4c;
-                    }
-                    &.other {
-                        background: #fdc403;
-                    }
                 }
             }
         }
+    }
+}
+.edit-area {
+    .selected-type {
+        float: left;
+        line-height: 40px;
+        padding: 15px;
+        color: #666;
+        .icon {
+            width: 40px;
+            height: 40px;
+            font-size: 22px;
+            border-radius: 50%;
+            text-align: center;
+            color: #fff;
+            float: left;
+            margin-right: 10px;
+        }
+    }
+    .edit-input {
+        height: 70px;
+        line-height: 70px;
+        float: right;
+        color: #666;
+        font-size: 20px;
+        input {
+            font-size: 20px;
+            outline: none;
+            border: 0;
+            width: 120px;
+            color: #666;
+        }
+    }
+}
+
+.icon {
+    &.income {
+        background: #93dcb8;
+    }
+    &.clothing {
+        background: #f39f61;
+    }
+    &.diet {
+        background: #fe8988
+    }
+    &.hotel {
+        background: #c6b29c;
+    }
+    &.transportation {
+        background: #6fb2de;
+    }
+    &.shop {
+        background: #da5a4c;
+    }
+    &.other {
+        background: #fdc403;
     }
 }

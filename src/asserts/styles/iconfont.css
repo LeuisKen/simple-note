@@ -24,34 +24,34 @@
     content: "\e6c1";
 }
 
-.icon-hotel:before {
-    content: "\e603";
+.icon-x:before {
+    content: "\e701";
 }
 
-.icon-plane:before {
-    content: "\e609";
-}
-
-.icon-diet:before {
-    content: "\e612";
+.icon-income:before {
+    content: "\e9b6";
 }
 
 .icon-clothing:before {
     content: "\e655";
 }
 
-.icon-etc:before {
-    content: "\e653";
+.icon-diet:before {
+    content: "\e612";
 }
 
-.icon-rmb:before {
-    content: "\e9b6";
+.icon-hotel:before {
+    content: "\e603";
 }
 
-.icon-x:before {
-    content: "\e701";
+.icon-transportation:before {
+    content: "\e609";
 }
 
 .icon-shop:before {
     content: "\e601";
+}
+
+.icon-other:before {
+    content: "\e653";
 }

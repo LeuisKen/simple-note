@@ -13,30 +13,19 @@
         <i class="iconfont icon-pen add-account"></i>
         <h1>记账本</h1>
     </div>
-    <select id="type" class="">
-        <option value="收入">收入</option>
-        <option value="衣服">衣服</option>
-        <option value="饮食">饮食</option>
-        <option value="住宿">住宿</option>
-        <option value="交通">交通</option>
-        <option value="购物">购物</option>
-        <option value="其他">其他</option>
-    </select>
-    <input id="amount" type="number" name="" value="">
-    <input id="take-note" type="button" name="" value="记一笔">
     <ul class="account-list">
     </ul>
     <div class="modal add-menu">
         <div class="add-menu-header">
             <i class="iconfont icon-x close"></i>
-            <div class="submit">发布</div>
+            <div id="take-note" class="submit">发布</div>
             <h2>记一笔</h2>
         </div>
         <div class="select-list">
             <div class="type-container">
                 <div class="select-type">
                     <div class="icon income">
-                        <i class="iconfont icon-rmb"></i>
+                        <i class="iconfont icon-income"></i>
                     </div>
                     收入
                 </div>
@@ -62,7 +51,7 @@
                 </div>
                 <div class="select-type">
                     <div class="icon transportation">
-                        <i class="iconfont icon-plane"></i>
+                        <i class="iconfont icon-transportation"></i>
                     </div>
                     交通
                 </div>
@@ -76,11 +65,22 @@
                 </div>
                 <div class="select-type">
                     <div class="icon other">
-                        <i class="iconfont icon-etc"></i>
+                        <i class="iconfont icon-other"></i>
                     </div>
                     其他
                 </div>
             </div>
+        </div>
+        <div class="edit-area clearfix">
+            <div class="selected-type">
+                <div class="icon income">
+                    <i class="iconfont icon-income"></i>
+                </div>
+                收入
+            </div>
+            <label class="edit-input">
+                ￥<input id="amount" type="number" placeholder="0.00">
+            </label>
         </div>
     </div>
     <script src="/common.js"></script>

@@ -8,6 +8,16 @@ import Model from './model';
 
 const $ = document.querySelector.bind(document);
 
+const typeDic = {
+    '收入': 'income',
+    '衣服': 'clothing',
+    '饮食': 'diet',
+    '住宿': 'hotel',
+    '交通': 'transportation',
+    '购物': 'shop',
+    '其他': 'other'
+}
+
 const View = {
     render(data) {
         let frag = document.createDocumentFragment();
@@ -15,10 +25,13 @@ const View = {
         Object.keys(data).forEach(el => {
             let item = document.createElement('li');
             let date = new Date(+el);
-            item.className = 'account-list-item';
+            let type = typeDic[data[el].type];
+            item.className = 'account-list-item clearfix';
             item.innerHTML = `
-                <span>${data[el].type}</span>
-                <span class="timestamp">${date.getFullYear() % 100}/${date.getMonth() + 1}/${date.getDate()}</span>
+                <div class="icon ${type}"><i class="iconfont icon-${type}"></i></div>${data[el].type}
+                <span class="timestamp">
+                    ${date.getFullYear() % 100}/${date.getMonth() + 1}/${date.getDate()}
+                </span>
                 <span class="amount ${data[el].amount.toString()[0] !== '-' ? 'income' : 'cost'}">
                     ${data[el].amount}
                 </span>
@@ -35,28 +48,10 @@ Model.onchange = function (data) {
     View.render(data);
 };
 
-let takeNoteBth = $('#take-note');
-let amount = $('#amount');
 let list = $('.account-list');
 let addBtn = $('.add-account');
 let modal = $('.modal');
 let modalClose = $('.modal .close');
-
-takeNoteBth.addEventListener('click', function (e) {
-    let type = $('#type').value;
-
-    Model.update(+new Date(), {
-        type,
-        amount: type === '收入' ? +amount.value : -amount.value
-    });
-    amount.value = '';
-});
-
-amount.addEventListener('keydown', function (e) {
-    if (e.keyCode === 13) {
-        takeNoteBth.click();
-    }
-});
 
 list.addEventListener('click', function ({target}) {
     if (target.textContent === '删除') {
@@ -102,6 +97,34 @@ modalClose.addEventListener('click', function () {
 
 window.addEventListener('load', function () {
     window.dispatchEvent(new Event('hashchange'));
+});
+
+$('.select-list').addEventListener('click', function({target}) {
+    let element = target;
+    while (element.nodeName !== 'DIV' || element.className !== 'select-type') {
+        if (element === this) {
+            return;
+        }
+        element = element.parentNode;
+    }
+    $('.selected-type').innerHTML = element.innerHTML;
+});
+
+$('#take-note').addEventListener('click', function() {
+    let amount = $('#amount');
+    let type = $('.selected-type').textContent.trim();
+    let checkReg = /^\d+(\.\d{0,2})?$/
+    if (!checkReg.test(amount.value) || +amount.value === 0) {
+        alert('请输入正确的金额数值！');
+        amount.value = ''
+        return;
+    }
+    Model.update(+new Date(), {
+        type,
+        amount: type === '收入' ? (+amount.value).toFixed(2) : (-amount.value).toFixed(2)
+    });
+    amount.value = '';
+    window.location.hash = ''
 });
 
 View.render(Model.get());
