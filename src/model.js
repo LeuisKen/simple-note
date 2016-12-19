@@ -19,6 +19,9 @@ export default {
         this.onchange(data);
     },
     delete(key) {
+        if (data[key] === undefined) {
+            return;
+        }
         delete data[key];
         this.sync();
         this.onchange(data);

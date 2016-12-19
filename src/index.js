@@ -27,6 +27,7 @@ const View = {
             let date = new Date(+el);
             let type = typeDic[data[el].type];
             item.className = 'account-list-item clearfix';
+            item.dataset.timestamp = el;
             item.innerHTML = `
                 <div class="icon ${type}"><i class="iconfont icon-${type}"></i></div>${data[el].type}
                 <span class="timestamp">
@@ -55,8 +56,10 @@ let modalClose = $('.modal .close');
 
 list.addEventListener('click', function ({target}) {
     if (target.textContent === '删除') {
-        let timestamp = target.parentNode.querySelector('.timestamp').textContent;
-        Model.delete(timestamp);
+        if (confirm('您确定要删除这条记录吗？')) {
+            let timestamp = target.parentNode.dataset.timestamp;
+            Model.delete(timestamp);
+        }
     }
 });
 
