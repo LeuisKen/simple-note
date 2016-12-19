@@ -46,14 +46,14 @@ const View = {
     },
     renderModal() {
         let timestamp = window.location.hash.split('/')[1];
-        let data = Model.get()[timestamp] || { type: '收入', amount: '' }
+        let data = Model.get()[timestamp] || { type: '收入', amount: '' };
         $('.selected-type').innerHTML = `
             <div class="icon ${typeDic[data.type]}">
                 <i class="iconfont icon-${typeDic[data.type]}"></i>
             </div>
             ${data.type}
-        `
-        $('#amount').value = Math.abs(data.amount)
+        `;
+        $('#amount').value = Math.abs(data.amount);
     }
 };
 
@@ -74,7 +74,7 @@ list.addEventListener('click', function ({target}) {
         }
     }
     else if (target.textContent === '编辑') {
-        window.location.hash = `#add/${target.parentNode.dataset.timestamp}`
+        window.location.hash = `#add/${target.parentNode.dataset.timestamp}`;
     }
 });
 
@@ -97,7 +97,7 @@ window.addEventListener('hashchange', function () {
     if (/^#add/.test(window.location.hash)) {
         modal.style.visibility = 'visible';
         modal.style.opacity = 1;
-        View.renderModal()
+        View.renderModal();
     }
     else {
         modal.style.opacity = 0;
