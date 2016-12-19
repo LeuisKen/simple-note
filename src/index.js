@@ -36,12 +36,24 @@ const View = {
                 <span class="amount ${data[el].amount.toString()[0] !== '-' ? 'income' : 'cost'}">
                     ${data[el].amount}
                 </span>
+                <button>编辑</button>
                 <button>删除</button>
             `;
             frag.appendChild(item);
         });
         list.innerHTML = '';
         list.appendChild(frag);
+    },
+    renderModal() {
+        let timestamp = window.location.hash.split('/')[1];
+        let data = Model.get()[timestamp] || { type: '收入', amount: '' }
+        $('.selected-type').innerHTML = `
+            <div class="icon ${typeDic[data.type]}">
+                <i class="iconfont icon-${typeDic[data.type]}"></i>
+            </div>
+            ${data.type}
+        `
+        $('#amount').value = Math.abs(data.amount)
     }
 };
 
@@ -61,27 +73,31 @@ list.addEventListener('click', function ({target}) {
             Model.delete(timestamp);
         }
     }
+    else if (target.textContent === '编辑') {
+        window.location.hash = `#add/${target.parentNode.dataset.timestamp}`
+    }
 });
 
-list.addEventListener('touchstart', function ({target}) {
-    let element = target;
-    while (element.nodeName !== 'LI' || element.className !== 'account-list-item') {
-        if (element === this) {
-            return;
-        }
-        element = element.parentNode;
-    }
-    console.log(element);
-});
+// list.addEventListener('touchstart', function ({target}) {
+//     let element = target;
+//     while (element.nodeName !== 'LI' || element.className !== 'account-list-item') {
+//         if (element === this) {
+//             return;
+//         }
+//         element = element.parentNode;
+//     }
+//     console.log(element);
+// });
 
 addBtn.addEventListener('click', function ({target}) {
     window.location.hash = 'add';
 });
 
 window.addEventListener('hashchange', function () {
-    if (window.location.hash === '#add') {
+    if (/^#add/.test(window.location.hash)) {
         modal.style.visibility = 'visible';
         modal.style.opacity = 1;
+        View.renderModal()
     }
     else {
         modal.style.opacity = 0;
@@ -122,7 +138,8 @@ $('#take-note').addEventListener('click', function () {
         amount.value = '';
         return;
     }
-    Model.update(+new Date(), {
+    let timestamp = window.location.hash.split('/')[1];
+    Model.update(timestamp || +new Date(), {
         type,
         amount: type === '收入' ? (+amount.value).toFixed(2) : (-amount.value).toFixed(2)
     });
