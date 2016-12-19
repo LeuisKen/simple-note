@@ -62,9 +62,7 @@ Model.onchange = function (data) {
 };
 
 let list = $('.account-list');
-let addBtn = $('.add-account');
 let modal = $('.modal');
-let modalClose = $('.modal .close');
 
 list.addEventListener('click', function ({target}) {
     if (target.textContent === '删除') {
@@ -89,7 +87,7 @@ list.addEventListener('click', function ({target}) {
 //     console.log(element);
 // });
 
-addBtn.addEventListener('click', function ({target}) {
+$('.add-account').addEventListener('click', function ({target}) {
     window.location.hash = 'add';
 });
 
@@ -110,7 +108,7 @@ modal.addEventListener('transitionend', function ({propertyName}) {
     }
 });
 
-modalClose.addEventListener('click', function () {
+$('.modal .close').addEventListener('click', function () {
     window.location.hash = '';
 });
 
