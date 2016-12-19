@@ -7,7 +7,7 @@
  - [x] 账目列表页
  - [ ] 账目统计页
  - [ ] 账目图表页
- - [ ] 账目编辑页
+ - [x] 账目编辑页
 
 该项目使用基于[webpack](https://webpack.github.io/)的[ant-tool](http://ant-tool.github.io/)作为构建工具；图标使用[iconfont](http://www.iconfont.cn/)；项目中的js代码均采用es6标准。
 
