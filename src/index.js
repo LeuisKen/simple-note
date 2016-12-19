@@ -16,7 +16,7 @@ const typeDic = {
     '交通': 'transportation',
     '购物': 'shop',
     '其他': 'other'
-}
+};
 
 const View = {
     render(data) {
@@ -99,7 +99,7 @@ window.addEventListener('load', function () {
     window.dispatchEvent(new Event('hashchange'));
 });
 
-$('.select-list').addEventListener('click', function({target}) {
+$('.select-list').addEventListener('click', function ({target}) {
     let element = target;
     while (element.nodeName !== 'DIV' || element.className !== 'select-type') {
         if (element === this) {
@@ -110,13 +110,13 @@ $('.select-list').addEventListener('click', function({target}) {
     $('.selected-type').innerHTML = element.innerHTML;
 });
 
-$('#take-note').addEventListener('click', function() {
+$('#take-note').addEventListener('click', function () {
     let amount = $('#amount');
     let type = $('.selected-type').textContent.trim();
-    let checkReg = /^\d+(\.\d{0,2})?$/
+    let checkReg = /^\d+(\.\d{0,2})?$/;
     if (!checkReg.test(amount.value) || +amount.value === 0) {
         alert('请输入正确的金额数值！');
-        amount.value = ''
+        amount.value = '';
         return;
     }
     Model.update(+new Date(), {
@@ -124,7 +124,23 @@ $('#take-note').addEventListener('click', function() {
         amount: type === '收入' ? (+amount.value).toFixed(2) : (-amount.value).toFixed(2)
     });
     amount.value = '';
-    window.location.hash = ''
+    window.location.hash = '';
 });
+
+$('.nav').addEventListener('click', (function () {
+    let flag = true;
+    let menu = $('.menu');
+    return function () {
+        if (flag) {
+            menu.style.height = '40px';
+            this.className = 'iconfont icon-x nav';
+        }
+        else {
+            menu.style.height = '0';
+            this.className = 'iconfont icon-menu nav';
+        }
+        flag = !flag;
+    };
+})());
 
 View.render(Model.get());

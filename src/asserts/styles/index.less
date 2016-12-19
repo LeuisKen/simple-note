@@ -36,6 +36,29 @@
         margin-right: 10px;
     }
 }
+
+.menu {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    z-index: 1;
+    overflow: hidden;
+    background-color: rgba(141, 212, 152, .9);
+    transition: .25s;
+    .menu-item {
+        color: #fff;
+        float: left;
+        height: 40px;
+        line-height: 40px;
+        list-style: none;
+        margin-left: 20px;
+        opacity: .7;
+        &.active {
+            opacity: 1;
+        }
+    }
+}
+
 .account-list-item {
     list-style: none;
     position: relative;
