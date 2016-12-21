@@ -5,6 +5,7 @@
 import './asserts/styles/iconfont.css';
 import './asserts/styles/index.less';
 import Model from './model';
+import Dialog from './dialog';
 
 const $ = document.querySelector.bind(document);
 
@@ -69,6 +70,7 @@ Model.onchange = function (data) {
 
 let list = $('.account-list');
 let modal = $('.modal');
+let editForm = new Dialog($('.add-menu'))
 
 // 账目列表及其子元素的click事件处理逻辑
 list.addEventListener('click', function ({target}) {
@@ -104,24 +106,14 @@ $('.add-account').addEventListener('click', function ({target}) {
 // 路由处理函数，后面要单独分出来
 window.addEventListener('hashchange', function () {
     if (/^#add/.test(window.location.hash)) {
-        modal.style.visibility = 'visible';
-        modal.style.opacity = 1;
+        editForm.show()
         View.renderModal();
-    }
-    else {
-        modal.style.opacity = 0;
-    }
-});
-
-// 完善弹出层动画
-modal.addEventListener('transitionend', function ({propertyName}) {
-    if (propertyName === 'opacity' && this.style.opacity === '0') {
-        this.style.visibility = 'hidden';
     }
 });
 
 // 关闭弹出层
 $('.modal .close').addEventListener('click', function () {
+    editForm.hide()
     window.location.hash = '';
 });
 
@@ -158,6 +150,7 @@ $('#take-note').addEventListener('click', function () {
         amount: type === '收入' ? (+amount.value).toFixed(2) : (-amount.value).toFixed(2)
     });
     amount.value = '';
+    editForm.hide()
     window.location.hash = '';
 });
 
