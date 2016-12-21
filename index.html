@@ -10,22 +10,24 @@
     <body>
     <div class="header">
         <i class="iconfont icon-menu nav"></i>
-        <i class="iconfont icon-pen add-account"></i>
+        <a href="#add"><i class="iconfont icon-pen add-account"></i></a>
         <h1>记账本</h1>
     </div>
     <ul class="menu">
-        <li class="menu-item active">账目列表</li>
-        <li class="menu-item">账目统计</li>
+        <li class="menu-item active"><a href="#">账目列表</a></li>
+        <li class="menu-item"><a href="#sum">账目统计</a></li>
         <li class="menu-item">账目图表</li>
     </ul>
     <ul class="account-list">
     </ul>
-    <div class="modal add-menu">
+    <!-- 条目编辑弹出层 start -->
+    <div class="dialog add-menu">
         <div class="add-menu-header">
             <i class="iconfont icon-x close"></i>
             <div id="take-note" class="submit">发布</div>
             <h2>记一笔</h2>
         </div>
+        <!-- 条目类型选择 start -->
         <div class="select-list">
             <div class="type-container">
                 <div class="select-type">
@@ -76,6 +78,7 @@
                 </div>
             </div>
         </div>
+        <!-- 条目类型选择 end -->
         <div class="edit-area clearfix">
             <div class="selected-type">
             </div>
@@ -84,6 +87,7 @@
             </label>
         </div>
     </div>
+    <!-- 条目编辑弹出层 end -->
     <script src="/common.js"></script>
     <script src="/index.js"></script>
     </body>

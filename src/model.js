@@ -19,6 +19,15 @@ export default {
     get() {
         return data;
     },
+    getSum() {
+        let sum = {};
+        Object.keys(data).forEach(el => {
+            let value = sum[data[el].type] || 0;
+            value += +data[el].amount;
+            sum[data[el].type] = value;
+        })
+        return sum;
+    },
     /**
      * 更新数据模型中某个键对应的值
      * @param {string} key 要修改值的键
@@ -28,6 +37,7 @@ export default {
         data[key] = value;
         this.sync();
         this.onchange(data);
+        return data;
     },
     /**
      * 删除数据模型中某个键对应的值
@@ -40,6 +50,7 @@ export default {
         delete data[key];
         this.sync();
         this.onchange(data);
+        return data;
     },
     // 将当前数据同步到localStorage
     sync() {

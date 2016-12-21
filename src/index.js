@@ -6,8 +6,10 @@ import './asserts/styles/iconfont.css';
 import './asserts/styles/index.less';
 import Model from './model';
 import Dialog from './dialog';
+import Router from './router';
 
 const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
 
 // 中文类型与css class对应的字典
 const typeDic = {
@@ -50,8 +52,8 @@ const View = {
         list.appendChild(frag);
     },
     // 渲染条目编辑页面，主要在编辑时将条目信息填写到页面中
-    renderModal() {
-        let timestamp = window.location.hash.split('/')[1];
+    renderModal(hash) {
+        let timestamp = hash.split('/')[1];
         let data = Model.get()[timestamp] || { type: '收入', amount: '' };
         $('.selected-type').innerHTML = `
             <div class="icon ${typeDic[data.type]}">
@@ -60,12 +62,27 @@ const View = {
             ${data.type}
         `;
         $('#amount').value = Math.abs(data.amount);
+    },
+    // 渲染条目统计页面
+    renderSum(sum) {
+        let frag = document.createDocumentFragment();
+        let list = $('.account-list');
+        for (let type in typeDic) {
+            if (sum[type] !== undefined) {
+                let item = document.createElement('li');
+                item.className = 'account-list-item clearfix';
+                item.innerHTML = `
+                    <div class="icon ${typeDic[type]}"><i class="iconfont icon-${typeDic[type]}"></i></div>${type}
+                    <span class="amount ${sum[type].toString()[0] !== '-' ? 'income' : 'cost'}">
+                        ${sum[type].toFixed(2)}
+                    </span>
+                `
+                frag.appendChild(item);
+            }
+        }
+        list.innerHTML = '';
+        list.appendChild(frag);
     }
-};
-
-// 当数据变化时重新渲染账目列表
-Model.onchange = function (data) {
-    View.render(data);
 };
 
 let list = $('.account-list');
@@ -78,7 +95,7 @@ list.addEventListener('click', function ({target}) {
     if (target.textContent === '删除') {
         if (confirm('您确定要删除这条记录吗？')) {
             let timestamp = target.parentNode.dataset.timestamp;
-            Model.delete(timestamp);
+            View.render(Model.delete(timestamp));
         }
     }
     // 编辑逻辑
@@ -98,26 +115,56 @@ list.addEventListener('click', function ({target}) {
 //     console.log(element);
 // });
 
-// 点击“记一笔”按钮后修改路由，其他工作交给路由控制
-$('.add-account').addEventListener('click', function ({target}) {
-    window.location.hash = 'add';
-});
-
-// 路由处理函数，后面要单独分出来
-window.addEventListener('hashchange', function () {
-    if (/^#add/.test(window.location.hash)) {
-        editForm.show()
-        View.renderModal();
+// 路由控制
+Router.push({
+    checker: /.*/,
+    callback: function(hash) {
+        if ($('.menu').style.height === '40px') {
+            $('.nav').dispatchEvent(new Event('click'));
+        }
+        let items = [...$$('li.menu-item')];
+        items.forEach(el => el.className = 'menu-item');
+        switch (hash) {
+            case '':
+                items[0].className += ' active';
+                break;
+            case '#sum':
+                items[1].className += ' active';
+                break;
+            default:
+        }
     }
 });
 
+Router.push({
+    checker: /^$/,
+    callback: function() {
+        View.render(Model.get());
+    }
+})
+
+Router.push({
+    checker: /^#add/,
+    callback: function(hash) {
+        editForm.show();
+        View.renderModal(hash);
+    }
+});
+
+Router.push({
+    checker: /^#sum$/,
+    callback: function() {
+        View.renderSum(Model.getSum());
+    }
+})
+
 // 关闭弹出层
-$('.modal .close').addEventListener('click', function () {
+$('.add-menu .close').addEventListener('click', function () {
     editForm.hide()
     window.location.hash = '';
 });
 
-// 页面加载时出发hashchange时间，以保证路由与界面的对应
+// 页面加载时出发hashchange事件，以保证路由与界面的对应
 window.addEventListener('load', function () {
     window.dispatchEvent(new Event('hashchange'));
 });
@@ -170,5 +217,3 @@ $('.nav').addEventListener('click', (function () {
         flag = !flag;
     };
 })());
-
-View.render(Model.get());
