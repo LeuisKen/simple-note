@@ -62,7 +62,7 @@ const View = {
             </div>
             ${data.type}
         `;
-        $('#amount').value = Math.abs(data.amount);
+        $('#amount').value = data.amount ? Math.abs(data.amount) : '';
     },
     // 渲染条目统计页面
     renderSum(sum) {
