@@ -6,6 +6,7 @@
   "scripts": {
     "start": "dora --plugins webpack",
     "build": "atool-build",
+    "check": "fecs --reporter=baidu",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "entry": {
@@ -25,7 +26,8 @@
   "devDependencies": {
     "atool-build": "^0.9.3",
     "dora": "^0.4.3",
-    "dora-plugin-webpack": "^0.8.1"
+    "dora-plugin-webpack": "^0.8.1",
+    "fecs": "^1.1.0"
   },
   "dependencies": {}
 }

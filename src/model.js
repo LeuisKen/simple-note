@@ -55,7 +55,9 @@ export default {
         if (data[key] === undefined) {
             return;
         }
+        /* eslint-disable fecs-valid-map-set */
         delete data[key];
+        /* eslint-enable fecs-valid-map-set */
         this.sync();
         this.onchange(data);
         return data;

@@ -23,6 +23,7 @@ const typeDic = {
 };
 
 // View对象，用于保存视图更新相关的方法
+/* eslint-disable fecs-prefer-class */
 const View = {
     // 根据Model中的数据，渲染新的账目列表
     render(data) {
@@ -84,6 +85,7 @@ const View = {
         list.appendChild(frag);
     }
 };
+/* eslint-enable fecs-prefer-class */
 
 let list = $('.account-list');
 let editForm = new Dialog($('.add-menu'));
