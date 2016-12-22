@@ -54,7 +54,7 @@ const View = {
     // 渲染条目编辑页面，主要在编辑时将条目信息填写到页面中
     renderModal(hash) {
         let timestamp = hash.split('/')[1];
-        let data = Model.get()[timestamp] || { type: '收入', amount: '' };
+        let data = Model.get()[timestamp] || {type: '收入', amount: ''};
         $('.selected-type').innerHTML = `
             <div class="icon ${typeDic[data.type]}">
                 <i class="iconfont icon-${typeDic[data.type]}"></i>
@@ -67,7 +67,7 @@ const View = {
     renderSum(sum) {
         let frag = document.createDocumentFragment();
         let list = $('.account-list');
-        for (let type in typeDic) {
+        Object.keys(typeDic).forEach(type => {
             if (sum[type] !== undefined) {
                 let item = document.createElement('li');
                 item.className = 'account-list-item clearfix';
@@ -76,18 +76,17 @@ const View = {
                     <span class="amount ${sum[type].toString()[0] !== '-' ? 'income' : 'cost'}">
                         ${sum[type].toFixed(2)}
                     </span>
-                `
+                `;
                 frag.appendChild(item);
             }
-        }
+        });
         list.innerHTML = '';
         list.appendChild(frag);
     }
 };
 
 let list = $('.account-list');
-let modal = $('.modal');
-let editForm = new Dialog($('.add-menu'))
+let editForm = new Dialog($('.add-menu'));
 
 // 账目列表及其子元素的click事件处理逻辑
 list.addEventListener('click', function ({target}) {
@@ -118,11 +117,11 @@ list.addEventListener('click', function ({target}) {
 // 路由控制
 Router.push({
     checker: /.*/,
-    callback: function(hash) {
+    callback(hash) {
         if ($('.menu').style.height === '40px') {
             $('.nav').dispatchEvent(new Event('click'));
         }
-        let items = [...$$('li.menu-item')];
+        let items = Array.from($$('li.menu-item'));
         items.forEach(el => el.className = 'menu-item');
         switch (hash) {
             case '':
@@ -138,14 +137,14 @@ Router.push({
 
 Router.push({
     checker: /^$/,
-    callback: function() {
+    callback() {
         View.render(Model.get());
     }
-})
+});
 
 Router.push({
     checker: /^#add/,
-    callback: function(hash) {
+    callback(hash) {
         editForm.show();
         View.renderModal(hash);
     }
@@ -153,14 +152,14 @@ Router.push({
 
 Router.push({
     checker: /^#sum$/,
-    callback: function() {
+    callback() {
         View.renderSum(Model.getSum());
     }
-})
+});
 
 // 关闭弹出层
 $('.add-menu .close').addEventListener('click', function () {
-    editForm.hide()
+    editForm.hide();
     window.location.hash = '';
 });
 
@@ -197,7 +196,7 @@ $('#take-note').addEventListener('click', function () {
         amount: type === '收入' ? (+amount.value).toFixed(2) : (-amount.value).toFixed(2)
     });
     amount.value = '';
-    editForm.hide()
+    editForm.hide();
     window.location.hash = '';
 });
 

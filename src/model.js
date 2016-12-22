@@ -12,9 +12,11 @@ if (data === null) {
 }
 
 export default {
+
     /**
      * 获取数据
-     * @return {object}
+     *
+     * @return {Object} 当前Model存储的数据
      */
     get() {
         return data;
@@ -25,13 +27,16 @@ export default {
             let value = sum[data[el].type] || 0;
             value += +data[el].amount;
             sum[data[el].type] = value;
-        })
+        });
         return sum;
     },
+
     /**
      * 更新数据模型中某个键对应的值
+     *
      * @param {string} key 要修改值的键
-     * @param {object} value 修改后的值
+     * @param {Object} value 修改后的值
+     * @return {Object} 修改后Model存储的数据
      */
     update(key, value) {
         data[key] = value;
@@ -39,9 +44,12 @@ export default {
         this.onchange(data);
         return data;
     },
+
     /**
      * 删除数据模型中某个键对应的值
+     *
      * @param {string} key 要删除的键
+     * @return {Object} 修改后Model存储的数据
      */
     delete(key) {
         if (data[key] === undefined) {
