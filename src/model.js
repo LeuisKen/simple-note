@@ -25,8 +25,11 @@ export default {
         let sum = {};
         Object.keys(data).forEach(el => {
             let value = sum[data[el].type] || 0;
+            let pay = sum['总支出'] || 0;
             value += +data[el].amount;
+            pay += data[el].type === '收入' ? 0 : +data[el].amount;
             sum[data[el].type] = value;
+            sum['总支出'] = pay;
         });
         return sum;
     },

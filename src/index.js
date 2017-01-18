@@ -27,6 +27,7 @@ const typeDic = {
 const View = {
     // 根据Model中的数据，渲染新的账目列表
     render(data) {
+        $('.pannel').innerHTML = '';
         let frag = document.createDocumentFragment();
         let list = $('.account-list');
         Object.keys(data).forEach(el => {
@@ -64,8 +65,26 @@ const View = {
         `;
         $('#amount').value = data.amount ? Math.abs(data.amount) : '';
     },
-    // 渲染条目统计页面
-    renderSum(sum) {
+    // 渲染统计概况
+    renderSumPannel(sum) {
+        let pannel = $('.pannel');
+        pannel.innerHTML = `
+            <div class="pannel-item">
+                <div class="title">总收入</div>
+                <div class="amount income">￥${(sum['收入']).toFixed(2)}</div>
+            </div>
+            <div class="pannel-item">
+                <div class="title">总支出</div>
+                <div class="amount cost">￥${(-sum['总支出']).toFixed(2)}</div>
+            </div>
+            <div class="pannel-item">
+                <div class="title last">总结余</div>
+                <div class="amount last left">￥${(sum['收入'] + sum['总支出']).toFixed(2)}</div>
+            </div>
+        `;
+    },
+    // 渲染统计列表
+    renderSumList(sum) {
         let frag = document.createDocumentFragment();
         let list = $('.account-list');
         Object.keys(typeDic).forEach(type => {
@@ -155,7 +174,9 @@ Router.push({
 Router.push({
     checker: /^#sum$/,
     callback() {
-        View.renderSum(Model.getSum());
+        let sum = Model.getSum();
+        View.renderSumPannel(sum);
+        View.renderSumList(sum);
     }
 });
 

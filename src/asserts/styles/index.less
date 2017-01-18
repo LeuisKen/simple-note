@@ -64,6 +64,37 @@ a {
     }
 }
 
+.pannel {
+    background-color: #fefefe;
+    .pannel-item {
+        float: left;
+        width: 100% / 3;
+        text-align: center;
+        margin: 20px 0;
+        .title,
+        .amount {
+            border-right: 1px solid #ccc;
+            &.last {
+                border-right: 0;
+            }
+        }
+        .title {
+            color: #999;
+        }
+        .amount {
+            &.income {
+                color: #7fd2a9;
+            }
+            &.cost {
+                color: #db6c63;
+            }
+            &.left {
+                color: #6b6b6b;
+            }
+        }
+    }
+}
+
 .account-list-item {
     list-style: none;
     position: relative;
@@ -71,7 +102,7 @@ a {
     color: #636363;
     padding: 10px;
     line-height: 40px;
-    &:nth-child(2n+1) {
+    &:nth-child(2n) {
         background: #fbfbfb;
     }
     .timestamp {
