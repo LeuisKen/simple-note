@@ -27,7 +27,6 @@ const typeDic = {
 const View = {
     // 根据Model中的数据，渲染新的账目列表
     render(data) {
-        $('.pannel').innerHTML = '';
         let frag = document.createDocumentFragment();
         let list = $('.account-list');
         Object.keys(data).forEach(el => {
@@ -50,7 +49,6 @@ const View = {
             `;
             frag.appendChild(item);
         });
-        list.innerHTML = '';
         list.appendChild(frag);
     },
     // 渲染条目编辑页面，主要在编辑时将条目信息填写到页面中
@@ -100,7 +98,6 @@ const View = {
                 frag.appendChild(item);
             }
         });
-        list.innerHTML = '';
         list.appendChild(frag);
     }
 };
@@ -139,9 +136,11 @@ list.addEventListener('click', function ({target}) {
 Router.push({
     checker: /.*/,
     callback(hash) {
+        // 复位导航菜单
         if ($('.menu').style.height === '40px') {
             $('.nav').dispatchEvent(new Event('click'));
         }
+        // 更新导航菜单条目的 active 状态
         let items = Array.from($$('li.menu-item'));
         items.forEach(el => el.className = 'menu-item');
         switch (hash) {
@@ -153,6 +152,9 @@ Router.push({
                 break;
             default:
         }
+        // 复位 dom
+        $('.pannel').innerHTML = '';
+        $('.account-list').innerHTML = '';
     }
 });
 
@@ -180,6 +182,15 @@ Router.push({
     }
 });
 
+Router.push({
+    checker: /^#chart$/,
+    callback() {
+        let sum = Model.getSum();
+        View.renderSumPannel(sum);
+
+    }
+})
+
 // 关闭弹出层
 $('.add-menu .close').addEventListener('click', function () {
     editForm.hide();
@@ -187,7 +198,7 @@ $('.add-menu .close').addEventListener('click', function () {
 });
 
 // 页面加载时出发hashchange事件，以保证路由与界面的对应
-window.addEventListener('load', function () {
+window.addEventListener('DOMContentLoaded', function () {
     window.dispatchEvent(new Event('hashchange'));
 });
 

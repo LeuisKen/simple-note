@@ -29,5 +29,7 @@
     "dora-plugin-webpack": "^0.8.1",
     "fecs": "^1.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "echarts": "^3.4.0"
+  }
 }
